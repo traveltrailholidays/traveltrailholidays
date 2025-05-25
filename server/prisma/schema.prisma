@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @db.Text
+  email       String   @unique @db.Text
+  photo       String?  @db.Text
+  password    String?  @db.Text
+  phone       String?  @db.Text
+  address     String?  @db.Text
+  accountType Int      @default(1) @map("account_type") // 1=normal, 2=google 
+  deviceType  Int      @default(1) @map("device_type") // 1=web, 2=android, 3=ios
+  role        Int      @default(1) // 1=user, 2=agent, 3=admin
+  isVerified  Int      @default(0) @map("is_verified") // 1=true, 0=false
+  status      Int      @default(1) // 1=active, 0=inactive
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  Session Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @unique @map("user_id") @db.Uuid
+  ipAddress String?  @map("ip_address") @db.Text
+  userAgent String?  @map("user_agent") @db.Text
+  token     String   @unique @db.Text
+  validTo   DateTime @map("valid_to")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Otp {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique @db.Text
+  code      Int
+  validTo   DateTime @map("valid_to")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("otps")
+}
