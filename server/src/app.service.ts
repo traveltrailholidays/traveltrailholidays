@@ -9,7 +9,7 @@ export class AppService {
       version: '1.0.0',
       description: 'This is the Travel Trail Holidays (TTH) Server which provide the REST APIs',
       status: 'Running',
-      created_by: 'Diwakar Jha',
+      createdBy: 'Diwakar Jha',
     };
   }
 }

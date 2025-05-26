@@ -3,5 +3,5 @@ export interface apiDetailsI {
   version: string;
   description: string;
   status: string;
-  created_by: string;
+  createdBy: string;
 }
