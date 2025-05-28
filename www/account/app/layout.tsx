@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s - TTH Account',
   },
   description:
-    'Centralized authentication system for Travel Trail Holidays. Securely sign in and access all your TTH services with a single account.',
+    'Centralized authentication system for Tourillo. Securely sign in and access all your TTH services with a single account.',
   icons: {
     icon: '/icon.png',
   },

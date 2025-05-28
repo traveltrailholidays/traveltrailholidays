@@ -58,7 +58,7 @@ const Signup = () => {
   return (
     <AuthLayout>
       {isLoading && <LoadingOverlay />}
-      <MainTitle heading="Sign up" subHeading="Create your Travel Trail Holidays account" />
+      <MainTitle heading="Sign up" subHeading="Create your Tourillo account" />
       <form onSubmit={(e) => { e.preventDefault(); handleEmailCheck(); }}>
         <InputBox
           label='Email id'
